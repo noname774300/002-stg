@@ -5,36 +5,27 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float movingForce;
-    private InputActions inputActions;
-    private DynamicJoystick moveJoystick;
-    private DynamicJoystick lookJoystick;
+    [SerializeField] private float rotatingForce;
+    private Input input;
     private Rigidbody2D rb;
-    private Vector2 moveDirection;
-    private Vector2 lookDirection;
 
     void Start()
     {
-        inputActions = new InputActions();
-        inputActions.Enable();
-        inputActions.Player.Fire.performed += context => Debug.Log("Fire");
-        moveJoystick = GameObject.Find("MoveJoystick").GetComponent<DynamicJoystick>();
-        lookJoystick = GameObject.Find("LookJoystick").GetComponent<DynamicJoystick>();
+        input = GameObject.FindObjectOfType<Input>();
         rb = GetComponent<Rigidbody2D>();
-    }
-
-    void Update()
-    {
-        var inputActionsMoveDirection = inputActions.Player.Move.ReadValue<Vector2>();
-        moveDirection = inputActionsMoveDirection.magnitude > 0 ? inputActionsMoveDirection : moveJoystick.Direction;
-        var inputActionsLookDirection = inputActions.Player.Look.ReadValue<Vector2>();
-        lookDirection = inputActionsLookDirection.magnitude > 0 ? inputActionsLookDirection : lookJoystick.Direction;
     }
 
     void FixedUpdate()
     {
+        var lookDirection = input.LookDirection;
+        if (lookDirection.magnitude > 0)
+        {
+            rb.AddTorque(-lookDirection.x * rotatingForce);
+        }
+        var moveDirection = input.MoveDirection;
         if (moveDirection.magnitude > 0)
         {
-            rb.AddForce(moveDirection * movingForce);
+            rb.AddRelativeForce(moveDirection * movingForce);
         }
     }
 }

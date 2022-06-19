@@ -20,7 +20,7 @@
     - [x] InputSystem [Unity の新入力システム・Input System を使おう – Unity for Pro](https://forpro.unity3d.jp/unity_pro_tips/2021/05/20/1957/)
     - [x] Joystick Pack の DynamicJoystick 配置
     - [ ] 仮想ボタン配置
-  - [ ] 視界回転調査
+  - [x] 視界回転
   - [ ] 戦闘終了演出
     - [ ] タイトルシーンへ移行
   - [ ] マップ処理（敵は Player より広い範囲を移動できる）

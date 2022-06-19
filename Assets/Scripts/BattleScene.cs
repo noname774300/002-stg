@@ -9,9 +9,9 @@ public class BattleScene : MonoBehaviour
 
     void Start()
     {
-        Instantiate(enemyPrefab, new Vector3(-3, 3, 0), Quaternion.identity);
-        Instantiate(enemyPrefab, new Vector3(0, 3, 0), Quaternion.identity);
-        Instantiate(enemyPrefab, new Vector3(3, 3, 0), Quaternion.identity);
+        Instantiate(enemyPrefab, new Vector3(-3, 7, 0), Quaternion.identity);
+        Instantiate(enemyPrefab, new Vector3(0, 7, 0), Quaternion.identity);
+        Instantiate(enemyPrefab, new Vector3(3, 7, 0), Quaternion.identity);
     }
 
     void Update()
