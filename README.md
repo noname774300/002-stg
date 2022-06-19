@@ -12,18 +12,13 @@
   - [x] Player 移動（仮想 Pad）
   - [x] Enemy 配置
   - [x] Enemy 移動
-  - [x] マップ
+  - [x] 視界回転
+  - [ ] マップ
     - [x] 調査 →Camera、Render Texture、Layer
     - [x] 表示
-    - [x] z 軸調整
-  - [ ] キーボード、ゲームパッドに対応
-    - [x] InputSystem [Unity の新入力システム・Input System を使おう – Unity for Pro](https://forpro.unity3d.jp/unity_pro_tips/2021/05/20/1957/)
-    - [x] Joystick Pack の DynamicJoystick 配置
-    - [ ] 仮想ボタン配置
-  - [x] 視界回転
-  - [ ] 戦闘終了演出
-    - [ ] タイトルシーンへ移行
-  - [ ] マップ処理（敵は Player より広い範囲を移動できる）
+    - [x] Order in Layer
+    - [x] Tilemap
+    - [ ] マップ処理（敵は Player より広い範囲を移動できる）
   - [ ] Player の攻撃
     - [ ] 自動射撃
     - [ ] 当たり判定
@@ -37,6 +32,12 @@
       - [ ] ライフル
       - [ ] ショットガン
     - [ ] Player HP バー表示（分数も）
+  - [ ] キーボード、ゲームパッドに対応
+    - [x] InputSystem [Unity の新入力システム・Input System を使おう – Unity for Pro](https://forpro.unity3d.jp/unity_pro_tips/2021/05/20/1957/)
+    - [x] Joystick Pack の DynamicJoystick 配置
+    - [ ] 仮想ボタン配置
+  - [ ] 戦闘終了演出
+    - [ ] タイトルシーンへ移行
   - [ ] Enemy の攻撃
     - [ ] 自動射撃
     - [ ] 当たり判定
@@ -47,11 +48,11 @@
     - [ ] アイテム生成（HP 回復、バリア、資源（金））
     - [ ] アイテム取得
 - [ ] 複数ステージ
+  - [ ] ステージデータ形式調査
+  - [ ] ステージ生成
   - [ ] ステージ選択シーン追加
     - [ ] 戦闘シーンへ移行
     - [ ] 戦闘シーンクリア後ステージ選択シーンへ
-  - [ ] ステージデータ形式調査
-  - [ ] ステージ生成
   - [ ] 最終ステージ終了後エンディング
 - [ ] セーブ
 - [ ] 作りこみ
