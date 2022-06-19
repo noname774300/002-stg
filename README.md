@@ -13,12 +13,12 @@
   - [x] Enemy 配置
   - [x] Enemy 移動
   - [x] 視界回転
-  - [ ] マップ
+  - [x] マップ
     - [x] 調査 →Camera、Render Texture、Layer
     - [x] 表示
     - [x] Order in Layer
     - [x] Tilemap
-    - [ ] マップ処理（敵は Player より広い範囲を移動できる）
+    - [x] マップ処理（敵は Player より広い範囲を移動できる）
   - [ ] Player の攻撃
     - [ ] 自動射撃
     - [ ] 当たり判定

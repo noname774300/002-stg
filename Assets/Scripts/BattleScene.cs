@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BattleScene : MonoBehaviour
 {
-    [SerializeField] private Player player;
+    public Vector2 PlayerMovingLimit;
     [SerializeField] private Enemy enemyPrefab;
 
     void Start()

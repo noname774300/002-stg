@@ -6,12 +6,14 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float movingForce;
     [SerializeField] private float rotatingForce;
+    private BattleScene battleScene;
     private Input input;
     private Rigidbody2D rb;
 
     void Start()
     {
-        input = GameObject.FindObjectOfType<Input>();
+        battleScene = FindObjectOfType<BattleScene>();
+        input = FindObjectOfType<Input>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -27,5 +29,20 @@ public class Player : MonoBehaviour
         {
             rb.AddRelativeForce(moveDirection * movingForce);
         }
+    }
+
+    void LateUpdate()
+    {
+        var position = transform.position;
+        transform.position = new Vector3(
+            Mathf.Clamp(
+                position.x,
+                -battleScene.PlayerMovingLimit.x,
+                battleScene.PlayerMovingLimit.x),
+            Mathf.Clamp(
+                position.y,
+                -battleScene.PlayerMovingLimit.y,
+                battleScene.PlayerMovingLimit.y),
+            position.z);
     }
 }
