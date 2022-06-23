@@ -1,24 +1,36 @@
+#nullable enable
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Input : MonoBehaviour
+[System.Serializable]
+public class Input
 {
-    public InputActions InputActions;
     public Vector2 MoveDirection = Vector2.zero;
     public Vector2 LookDirection = Vector2.zero;
     private DynamicJoystick moveJoystick;
     private DynamicJoystick lookJoystick;
-
-    void Start()
+    public InputActions InputActions
     {
-        InputActions = new InputActions();
-        InputActions.Enable();
-        moveJoystick = GameObject.Find("MoveJoystick").GetComponent<DynamicJoystick>();
-        lookJoystick = GameObject.Find("LookJoystick").GetComponent<DynamicJoystick>();
+        get
+        {
+            if (inputActions == null)
+            {
+                inputActions = new InputActions();
+                inputActions.Enable();
+            }
+            return inputActions;
+        }
+    }
+    private InputActions? inputActions;
+
+    public Input(DynamicJoystick moveJoystick, DynamicJoystick lookJoystick)
+    {
+        this.moveJoystick = moveJoystick;
+        this.lookJoystick = lookJoystick;
     }
 
-    void Update()
+    public void Update()
     {
         var inputActionsMoveDirection = InputActions.Player.Move.ReadValue<Vector2>();
         MoveDirection = inputActionsMoveDirection.magnitude > 0 ? inputActionsMoveDirection : moveJoystick.Direction;
