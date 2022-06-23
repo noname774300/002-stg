@@ -1,7 +1,8 @@
 {
   "FormattingOptions": {
-    "NewLine": "\n",
-    "UseTabs": false,
-    "IndentSize": 4
+    "EnableEditorConfigSupport": true
+  },
+  "RoslynExtensionsOptions": {
+    "EnableAnalyzersSupport": true
   }
 }
