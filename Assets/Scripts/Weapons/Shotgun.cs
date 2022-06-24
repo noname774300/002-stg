@@ -1,22 +1,14 @@
 #nullable enable
 namespace Weapons
 {
-    using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
 
     [System.Serializable]
     public class Shotgun : IWeapon
     {
-        public string Name => name;
-        private string name;
-        public string TargetingMode
-        {
-            get
-            {
-                return targetAttributeTexts[(int)nextTargetAttribute];
-            }
-        }
+        public string Name { get; private set; }
+        public string TargetingMode => targetAttributeTexts[(int)nextTargetAttribute];
         private enum TargetAttribtue
         {
             Nearest,
@@ -25,8 +17,7 @@ namespace Weapons
         }
         private TargetAttribtue nextTargetAttribute = TargetAttribtue.Nearest;
         private string[] targetAttributeTexts = { "近", "弱", "強" };
-        public List<Enemy> Targets => targets;
-        private List<Enemy> targets;
+        public List<Enemy> Targets { get; private set; }
         private float lockOnRange;
         private float searchCooldown;
         private float searchTimer = 0;
@@ -34,18 +25,16 @@ namespace Weapons
         private float shootTimer = 0;
         private float bulletVelocity;
         private int damage;
-        private int pellets;
 
-        public Shotgun(string name, float lockOnRange, float searchCooldown, float shootCooldown, float bulletVelocity, int damage, int pellets)
+        public Shotgun(string name, float lockOnRange, float searchCooldown, float shootCooldown, float bulletVelocity, int damage)
         {
-            this.name = name;
-            targets = new List<Enemy>();
+            Name = name;
+            Targets = new List<Enemy>();
             this.lockOnRange = lockOnRange;
             this.searchCooldown = searchCooldown;
             this.shootCooldown = shootCooldown;
             this.bulletVelocity = bulletVelocity;
             this.damage = damage;
-            this.pellets = pellets;
         }
 
         public void Update(Player player, bool loaded)
@@ -53,19 +42,22 @@ namespace Weapons
             if (!loaded)
             {
                 searchTimer = 0;
-                targets.Clear();
+                Targets.Clear();
                 shootTimer = 0;
                 return;
             }
-            targets.RemoveAll(t =>
+            var _ = Targets.RemoveAll(t =>
             {
-                if (t == null) return true;
+                if (t == null)
+                {
+                    return true;
+                }
                 var distance = (t.transform.position - player.transform.position).magnitude;
                 return distance > lockOnRange;
             });
             if (searchTimer >= searchCooldown)
             {
-                targets.Clear();
+                Targets.Clear();
                 Enemy? target = null;
                 var enemies = Object.FindObjectsOfType<Enemy>();
                 if (enemies.Length >= 1)
@@ -77,7 +69,10 @@ namespace Weapons
                             foreach (var enemy in enemies)
                             {
                                 var distance = Vector3.Distance(player.transform.position, enemy.transform.position);
-                                if (distance > lockOnRange) continue;
+                                if (distance > lockOnRange)
+                                {
+                                    continue;
+                                }
                                 if (distance < minDistance)
                                 {
                                     minDistance = distance;
@@ -90,7 +85,10 @@ namespace Weapons
                             foreach (var enemy in enemies)
                             {
                                 var distance = Vector3.Distance(player.transform.position, enemy.transform.position);
-                                if (distance > lockOnRange) continue;
+                                if (distance > lockOnRange)
+                                {
+                                    continue;
+                                }
                                 if (enemy.Hp < minHp)
                                 {
                                     minHp = enemy.Hp;
@@ -103,7 +101,10 @@ namespace Weapons
                             foreach (var enemy in enemies)
                             {
                                 var distance = Vector3.Distance(player.transform.position, enemy.transform.position);
-                                if (distance > lockOnRange) continue;
+                                if (distance > lockOnRange)
+                                {
+                                    continue;
+                                }
                                 if (enemy.Hp > maxHp)
                                 {
                                     maxHp = enemy.Hp;
@@ -111,12 +112,14 @@ namespace Weapons
                                 }
                             }
                             break;
+                        default:
+                            break;
                     }
                     searchTimer = 0;
                 }
                 if (target != null)
                 {
-                    targets.Add(target);
+                    Targets.Add(target);
                 }
             }
             else
@@ -132,23 +135,30 @@ namespace Weapons
         public void ChangeTargetAttribute()
         {
             nextTargetAttribute = (TargetAttribtue)(((int)nextTargetAttribute + 1) % 3);
-            targets.Clear();
+            Targets.Clear();
             searchTimer = 0;
         }
 
         public void PullTrigger(Player player, BattleScene battleScene)
         {
-            if (shootTimer <= shootCooldown) return;
-            if (targets.Count == 0) return;
-            var targetDirection = (targets[0].transform.position - player.transform.position).normalized;
+            if (shootTimer <= shootCooldown || Targets.Count == 0)
+            {
+                return;
+            }
+            var target = Targets[0];
+            if (target == null)
+            {
+                return;
+            }
+            var targetDirection = (Targets[0].transform.position - player.transform.position).normalized;
             var bullet = Object.Instantiate(
                 battleScene.BulletPrefab!,
-                player.transform.position + targetDirection * 1.2f,
+                player.transform.position + (targetDirection * 1.2f),
                 Quaternion.AngleAxis(
-                    Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90,
+                    (Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg) - 90,
                     Vector3.forward));
             bullet.Initialize(damage);
-            bullet.GetComponent<Rigidbody2D>().velocity = player.Rb.velocity + (Vector2)targetDirection * bulletVelocity;
+            bullet.GetComponent<Rigidbody2D>().velocity = player.Rb.velocity + ((Vector2)targetDirection * bulletVelocity);
             shootTimer = 0;
         }
     }

@@ -1,14 +1,14 @@
 #nullable enable
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BattleScene : MonoBehaviour
 {
-    [SerializeReference] public Input? Input;
-    public Bullet? BulletPrefab;
+    public Input? Input => input;
+    [SerializeReference] private Input? input;
+    public Bullet? BulletPrefab => bulletPrefab;
+    [SerializeField] private Bullet? bulletPrefab;
     [SerializeField] private Enemy? enemyPrefab;
     [SerializeField] private Image? hpBar;
     [SerializeField] private TextMeshProUGUI? hpText;
@@ -20,10 +20,10 @@ public class BattleScene : MonoBehaviour
     [SerializeField] private DynamicJoystick? lookJoystick;
     private Player? player;
 
-    void Start()
+    public void Start()
     {
         player = FindObjectOfType<Player>();
-        Input = new Input(moveJoystick!, lookJoystick!);
+        input = new Input(moveJoystick!, lookJoystick!);
         Instantiate(enemyPrefab!, new Vector3(-3, 7, 0), Quaternion.identity).Initialize(
             maxHp: 10,
             movingForce: 5);
@@ -35,7 +35,7 @@ public class BattleScene : MonoBehaviour
             movingForce: 5);
     }
 
-    void Update()
+    public void Update()
     {
         hpBar!.fillAmount = (float)player!.Hp / player.MaxHp;
         hpText!.text = player.Hp + " / " + player.MaxHp;
@@ -64,7 +64,7 @@ public class BattleScene : MonoBehaviour
                 if (target != null)
                 {
                     var targetPositionOnScreen = Camera.main.WorldToScreenPoint(target.transform.position);
-                    RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                    var _ = RectTransformUtility.ScreenPointToLocalPointInRectangle(
                         lockOnFrame.transform.parent.GetComponent<RectTransform>(),
                         targetPositionOnScreen,
                         null,

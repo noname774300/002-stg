@@ -1,13 +1,11 @@
 #nullable enable
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public class Input
 {
-    public Vector2 MoveDirection = Vector2.zero;
-    public Vector2 LookDirection = Vector2.zero;
+    public Vector2 MoveDirection { get; private set; }
+    public Vector2 LookDirection { get; private set; }
     private DynamicJoystick moveJoystick;
     private DynamicJoystick lookJoystick;
     public InputActions InputActions

@@ -1,8 +1,6 @@
 #nullable enable
 namespace Weapons
 {
-    using System.Collections;
-    using System.Collections.Generic;
     using UnityEngine;
 
     [System.Serializable]
@@ -12,41 +10,29 @@ namespace Weapons
         [SerializeReference] private IWeapon[] weapons;
         private int loadedWeaponIndex = 0;
 
-        public WeaponsHolder(IWeapon[] weapons)
-        {
-            this.weapons = weapons;
-        }
+        public WeaponsHolder(IWeapon[] weapons) => this.weapons = weapons;
 
         public IWeapon? GetLoadedWeapon()
         {
-            if (loadedWeaponIndex < weapons.Length)
+            if (loadedWeaponIndex < Weapons.Length)
             {
-                return weapons[loadedWeaponIndex];
+                return Weapons[loadedWeaponIndex];
             }
             return null;
         }
 
         public void Update(Player player)
         {
-            for (int i = 0; i < weapons.Length; i++)
+            for (var i = 0; i < Weapons.Length; i++)
             {
-                weapons[i].Update(player, i == loadedWeaponIndex);
+                Weapons[i].Update(player, i == loadedWeaponIndex);
             }
         }
 
-        public void ChangeWeapon()
-        {
-            loadedWeaponIndex = (loadedWeaponIndex + 1) % weapons.Length;
-        }
+        public void ChangeWeapon() => loadedWeaponIndex = (loadedWeaponIndex + 1) % Weapons.Length;
 
-        public void ChangeTargetAttributeOfLoadedWeapon()
-        {
-            weapons[loadedWeaponIndex].ChangeTargetAttribute();
-        }
+        public void ChangeTargetAttributeOfLoadedWeapon() => Weapons[loadedWeaponIndex].ChangeTargetAttribute();
 
-        public void PullTriggerOfLoadedWeapon(Player player, BattleScene battleScene)
-        {
-            weapons[loadedWeaponIndex].PullTrigger(player, battleScene);
-        }
+        public void PullTriggerOfLoadedWeapon(Player player, BattleScene battleScene) => Weapons[loadedWeaponIndex].PullTrigger(player, battleScene);
     }
 }

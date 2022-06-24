@@ -1378,9 +1378,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d36effad9c92d7478b5f1d0b63c4bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Input:
+  input:
     rid: -2
-  BulletPrefab: {fileID: 6048001538107409128, guid: c71367ffb09c05f44bcc2ee6ce90bb89, type: 3}
+  bulletPrefab: {fileID: 6048001538107409128, guid: c71367ffb09c05f44bcc2ee6ce90bb89, type: 3}
   enemyPrefab: {fileID: 8774725244452762319, guid: 6fd59c8d658c5894eac2fb3f904b2c35, type: 3}
   hpBar: {fileID: 1790346201}
   hpText: {fileID: 1587756103}
