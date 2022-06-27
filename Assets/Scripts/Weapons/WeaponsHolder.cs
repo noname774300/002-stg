@@ -1,38 +1,29 @@
 #nullable enable
-namespace Weapons
+
+using UnityEngine;
+
+[System.Serializable]
+public class WeaponsHolder
 {
-    using UnityEngine;
+    public IWeapon[] Weapons => weapons;
+    [SerializeReference] private IWeapon[] weapons;
+    private int loadedWeaponIndex = 0;
 
-    [System.Serializable]
-    public class WeaponsHolder
+    public WeaponsHolder(IWeapon[] weapons) => this.weapons = weapons;
+
+    public IWeapon? GetLoadedWeapon() => loadedWeaponIndex < Weapons.Length ? Weapons[loadedWeaponIndex] : null;
+
+    public void Update(GameObject user, string targetTag)
     {
-        public IWeapon[] Weapons => weapons;
-        [SerializeReference] private IWeapon[] weapons;
-        private int loadedWeaponIndex = 0;
-
-        public WeaponsHolder(IWeapon[] weapons) => this.weapons = weapons;
-
-        public IWeapon? GetLoadedWeapon()
+        for (var i = 0; i < Weapons.Length; i++)
         {
-            if (loadedWeaponIndex < Weapons.Length)
-            {
-                return Weapons[loadedWeaponIndex];
-            }
-            return null;
+            Weapons[i].Update(user, targetTag, i == loadedWeaponIndex);
         }
-
-        public void Update(Player player)
-        {
-            for (var i = 0; i < Weapons.Length; i++)
-            {
-                Weapons[i].Update(player, i == loadedWeaponIndex);
-            }
-        }
-
-        public void ChangeWeapon() => loadedWeaponIndex = (loadedWeaponIndex + 1) % Weapons.Length;
-
-        public void ChangeTargetAttributeOfLoadedWeapon() => Weapons[loadedWeaponIndex].ChangeTargetAttribute();
-
-        public void PullTriggerOfLoadedWeapon(Player player, BattleScene battleScene) => Weapons[loadedWeaponIndex].PullTrigger(player, battleScene);
     }
+
+    public void ChangeWeapon() => loadedWeaponIndex = (loadedWeaponIndex + 1) % Weapons.Length;
+
+    public void ChangeTargetAttributeOfLoadedWeapon() => Weapons[loadedWeaponIndex].ChangeTargetAttribute();
+
+    public void PullTriggerOfLoadedWeapon(GameObject user, BattleScene battleScene) => Weapons[loadedWeaponIndex].PullTrigger(user, battleScene);
 }

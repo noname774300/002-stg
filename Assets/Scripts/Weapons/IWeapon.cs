@@ -1,15 +1,14 @@
 #nullable enable
-namespace Weapons
-{
-    using System.Collections.Generic;
 
-    public interface IWeapon
-    {
-        string Name { get; }
-        string TargetingMode { get; }
-        List<Enemy> Targets { get; }
-        void Update(Player player, bool loaded);
-        void ChangeTargetAttribute();
-        void PullTrigger(Player player, BattleScene battleScene);
-    }
+using System.Collections.Generic;
+using UnityEngine;
+
+public interface IWeapon
+{
+    string Name { get; }
+    string TargetingMode { get; }
+    List<GameObject> Targets { get; }
+    void Update(GameObject user, string targetTag, bool loaded);
+    void ChangeTargetAttribute();
+    void PullTrigger(GameObject user, BattleScene battleScene);
 }

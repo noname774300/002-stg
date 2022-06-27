@@ -94,8 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8774725244452762316}
   - component: {fileID: 8774725244452762317}
-  - component: {fileID: 8774725244452762307}
   - component: {fileID: 8774725244452762318}
+  - component: {fileID: 8774725244452762307}
   - component: {fileID: 8774725244452762319}
   m_Layer: 0
   m_Name: Enemy
@@ -172,22 +172,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &8774725244452762307
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8774725244452762304}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 9d46a5f61fe786b419dfa58fd16c72c6, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!50 &8774725244452762318
 Rigidbody2D:
   serializedVersion: 4
@@ -204,11 +188,27 @@ Rigidbody2D:
   m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9d46a5f61fe786b419dfa58fd16c72c6, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &8774725244452762307
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8774725244452762304}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!114 &8774725244452762319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +218,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8774725244452762304}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c917307f62779fe4bbab6e8b1f89069d, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b8ca6a98071e7047bfaa7bae043c295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
