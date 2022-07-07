@@ -27,7 +27,7 @@ public class BattleScene : MonoBehaviour
     private Player? player;
     private Image[]? lockOnFrames;
 
-    public void Start()
+    protected void Start()
     {
         input = new Input(moveJoystick!, lookJoystick!);
         player = FindObjectOfType<Player>();
@@ -47,7 +47,7 @@ public class BattleScene : MonoBehaviour
             movingForce: 5);
     }
 
-    public void Update()
+    protected void Update()
     {
         Input!.Update();
         UpdateUI();

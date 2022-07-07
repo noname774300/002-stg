@@ -45,7 +45,7 @@ indent_size = 2
 
 # Markdown Files
 [*.{md,mdx}]
-indent_size = 2
+indent_size = 2 # added
 trim_trailing_whitespace = false
 
 # Web Files
@@ -106,9 +106,9 @@ dotnet_style_explicit_tuple_names = true:warning
 dotnet_style_prefer_inferred_tuple_names = true:warning
 dotnet_style_prefer_inferred_anonymous_type_member_names = true:warning
 dotnet_style_prefer_auto_properties = true:warning
-dotnet_style_prefer_conditional_expression_over_assignment = true:suggestion
+dotnet_style_prefer_conditional_expression_over_assignment = true:suggestion # modified
 dotnet_diagnostic.IDE0045.severity = suggestion
-dotnet_style_prefer_conditional_expression_over_return = true:suggestion
+dotnet_style_prefer_conditional_expression_over_return = true:suggestion # modified
 dotnet_diagnostic.IDE0046.severity = suggestion
 dotnet_style_prefer_compound_assignment = true:warning
 dotnet_style_prefer_simplified_interpolation = true:warning
@@ -160,7 +160,7 @@ csharp_style_throw_expression = true:warning
 csharp_style_conditional_delegate_call = true:warning
 # Code block preferences
 csharp_prefer_braces = true:warning
-csharp_prefer_simple_using_statement = false:suggestion
+csharp_prefer_simple_using_statement = false:suggestion # modified
 dotnet_diagnostic.IDE0063.severity = suggestion
 # 'using' directive preferences
 csharp_using_directive_placement = inside_namespace:warning
@@ -458,3 +458,8 @@ generated_code = true
 # Add a helper diagnostic for enforcing IDE0005 (remove unnecessary usi… by mavasani · Pull Request #58835 · dotnet/roslyn
 # https://github.com/dotnet/roslyn/pull/58835
 dotnet_diagnostic.IDE0005.severity = silent
+
+# Microsoft.Unity.Analyzers/UNT0021.md at afc6b7f712d453c9181478b1f20edd2488907a1b · microsoft/Microsoft.Unity.Analyzers
+# https://github.com/microsoft/Microsoft.Unity.Analyzers/blob/afc6b7f712d453c9181478b1f20edd2488907a1b/doc/UNT0021.md
+[*.cs]
+dotnet_diagnostic.UNT0021.severity = suggestion

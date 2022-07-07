@@ -3,6 +3,7 @@
     "EnableEditorConfigSupport": true
   },
   "RoslynExtensionsOptions": {
-    "EnableAnalyzersSupport": true
+    "EnableAnalyzersSupport": true,
+    "LocationPaths": ["./microsoft.unity.analyzers.1.13.0"]
   }
 }

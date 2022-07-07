@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
 
     public void Initialize(int damage) => this.damage = damage;
 
-    public void OnCollisionEnter2D(Collision2D collisionInfo)
+    protected void OnCollisionEnter2D(Collision2D collisionInfo)
     {
         collisionInfo.gameObject.GetComponent<IDamageTaker>().IfNotNull(c => c.TakeDamage(damage));
         Destroy(gameObject);

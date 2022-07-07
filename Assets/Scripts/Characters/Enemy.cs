@@ -26,13 +26,13 @@ public class Enemy : MonoBehaviour, IDamageTaker, ITarget
         battleScene = FindObjectOfType<BattleScene>();
     }
 
-    public void Update()
+    protected void Update()
     {
         weapon!.Update(gameObject, "Player", true);
         weapon.PullTrigger(gameObject, battleScene!);
     }
 
-    public void FixedUpdate()
+    protected void FixedUpdate()
     {
         var direction = (player!.transform.position - transform.position).normalized;
         rb!.AddForce(direction * movingForce);

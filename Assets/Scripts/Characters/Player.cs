@@ -14,7 +14,7 @@ public class Player : MonoBehaviour, IDamageTaker, ITarget
     private float movingForce;
     private float rotatingForce;
 
-    public void Start()
+    protected void Start()
     {
         Rb = GetComponent<Rigidbody2D>();
         MaxHp = 100;
@@ -40,7 +40,7 @@ public class Player : MonoBehaviour, IDamageTaker, ITarget
         rotatingForce = 1;
     }
 
-    public void Update()
+    protected void Update()
     {
         WeaponsHolder!.Update(gameObject, "Enemy");
         if (battleScene!.Input!.InputActions.Player.ChangeWeapon.triggered)
@@ -57,7 +57,7 @@ public class Player : MonoBehaviour, IDamageTaker, ITarget
         }
     }
 
-    public void FixedUpdate()
+    protected void FixedUpdate()
     {
         var lookDirection = battleScene!.Input!.LookDirection;
         if (lookDirection.magnitude > 0)
@@ -71,7 +71,7 @@ public class Player : MonoBehaviour, IDamageTaker, ITarget
         }
     }
 
-    public void LateUpdate()
+    protected void LateUpdate()
     {
         var position = transform.position;
         transform.position = new Vector3(
