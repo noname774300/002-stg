@@ -12,6 +12,7 @@ public class Player : MonoBehaviour, IDamageTaker, ITarget
     private BattleScene? battleScene;
     private Vector2 movingLimit;
     private float movingForce;
+    public bool Triggered { get; private set; }
 
     protected void Start()
     {
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour, IDamageTaker, ITarget
         battleScene = FindObjectOfType<BattleScene>();
         movingLimit = new Vector2(15, 15);
         movingForce = 40;
+        Triggered = false;
     }
 
     protected void Update()
@@ -49,7 +51,11 @@ public class Player : MonoBehaviour, IDamageTaker, ITarget
         {
             WeaponsHolder.ChangeTargetAttributeOfLoadedWeapon();
         }
-        if (battleScene.Input.InputActions.Player.Fire.IsPressed())
+        if (battleScene.Input.InputActions.Player.Fire.triggered)
+        {
+            Triggered = !Triggered;
+        }
+        if (Triggered)
         {
             WeaponsHolder.PullTriggerOfLoadedWeapon(gameObject, battleScene);
         }

@@ -73,7 +73,7 @@ public class BattleScene : MonoBehaviour
         {
             weaponText!.text = loadedWeapon.Name;
             nextTargetAttributeText!.text = loadedWeapon.TargetingMode;
-            triggerText!.text = "トリガー";
+            triggerText!.text = player.Triggered ? "発射中" : "停止中";
             var targets = loadedWeapon.Targets;
             for (var i = 0; i < lockOnFrames!.Length; i++)
             {

@@ -189,7 +189,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""797b8b53-99bd-440f-977a-eacf1c277433"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -233,7 +233,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e854780d-c8a5-4422-92f8-50bcd6dff10a"",
-                    ""path"": ""<Keyboard>/shift"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
