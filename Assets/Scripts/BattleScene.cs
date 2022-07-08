@@ -21,7 +21,6 @@ public class BattleScene : MonoBehaviour
     [SerializeField] private TextMeshProUGUI? triggerText;
     [SerializeField] private Image? lockOnFramePrefab;
     [SerializeField] private DynamicJoystick? moveJoystick;
-    [SerializeField] private DynamicJoystick? lookJoystick;
     [SerializeField] private TextMeshProUGUI? missionIsOverText;
     public bool MissionIsOver { get; private set; }
     private Player? player;
@@ -29,7 +28,7 @@ public class BattleScene : MonoBehaviour
 
     protected void Start()
     {
-        input = new Input(moveJoystick!, lookJoystick!);
+        input = new Input(moveJoystick!);
         player = FindObjectOfType<Player>();
         lockOnFrames = new Image[] { Instantiate(lockOnFramePrefab!) };
         foreach (var lockOnFrame in lockOnFrames)

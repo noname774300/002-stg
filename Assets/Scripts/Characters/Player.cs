@@ -12,7 +12,6 @@ public class Player : MonoBehaviour, IDamageTaker, ITarget
     private BattleScene? battleScene;
     private Vector2 movingLimit;
     private float movingForce;
-    private float rotatingForce;
 
     protected void Start()
     {
@@ -37,7 +36,6 @@ public class Player : MonoBehaviour, IDamageTaker, ITarget
         battleScene = FindObjectOfType<BattleScene>();
         movingLimit = new Vector2(15, 15);
         movingForce = 40;
-        rotatingForce = 1;
     }
 
     protected void Update()
@@ -59,12 +57,7 @@ public class Player : MonoBehaviour, IDamageTaker, ITarget
 
     protected void FixedUpdate()
     {
-        var lookDirection = battleScene!.Input!.LookDirection;
-        if (lookDirection.magnitude > 0)
-        {
-            Rb!.AddTorque(-lookDirection.x * rotatingForce);
-        }
-        var moveDirection = battleScene.Input.MoveDirection;
+        var moveDirection = battleScene!.Input!.MoveDirection;
         if (moveDirection.magnitude > 0)
         {
             Rb!.AddRelativeForce(moveDirection * movingForce);
