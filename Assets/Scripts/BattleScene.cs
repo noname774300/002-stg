@@ -4,6 +4,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class BattleScene : MonoBehaviour
@@ -22,6 +23,8 @@ public class BattleScene : MonoBehaviour
     [SerializeField] private Image? lockOnFramePrefab;
     [SerializeField] private DynamicJoystick? moveJoystick;
     [SerializeField] private TextMeshProUGUI? missionIsOverText;
+    [SerializeField] private Tilemap? tilemap;
+    [SerializeField] private TileBase? wallTile;
     public bool MissionIsOver { get; private set; }
     private Player? player;
     private Image[]? lockOnFrames;
@@ -44,6 +47,32 @@ public class BattleScene : MonoBehaviour
         Instantiate(enemyPrefab!, new Vector3(3, 7, 0), Quaternion.identity).Initialize(
             maxHp: 30,
             movingForce: 5);
+        InitializeTilemap();
+    }
+
+    private void InitializeTilemap()
+    {
+        var width = 200;
+        var height = 200;
+        var relief = 3f;
+        var seedX = 0f;
+        var seedY = 0f;
+        var halfWidth = width / 2;
+        var halfHeight = height / 2;
+        tilemap!.ClearAllTiles();
+        for (var x = 0; x < width; x++)
+        {
+            for (var y = 0; y < height; y++)
+            {
+                var noise = Mathf.PerlinNoise(
+                    (x + seedX) * relief / 100f,
+                    (y + seedY) * relief / 100f);
+                Debug.Log($"{x}, {y}, {noise}");
+                tilemap.SetTile(
+                    new Vector3Int(x - halfWidth, y - halfHeight, 0),
+                    noise > 0.5 ? wallTile : null);
+            }
+        }
     }
 
     protected void Update()
@@ -51,7 +80,6 @@ public class BattleScene : MonoBehaviour
         Input!.Update();
         UpdateUI();
         GoToNextSceneOrNot();
-
     }
 
     private void UpdateUI()

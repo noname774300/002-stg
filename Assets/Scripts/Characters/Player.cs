@@ -35,7 +35,7 @@ public class Player : MonoBehaviour, IDamageTaker, ITarget
                 bulletVelocity: 20,
                 damage: 5) });
         battleScene = FindObjectOfType<BattleScene>();
-        movingLimit = new Vector2(15, 15);
+        movingLimit = new Vector2(50, 50);
         movingForce = 40;
         Triggered = false;
     }
