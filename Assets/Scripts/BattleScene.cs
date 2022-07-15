@@ -85,7 +85,7 @@ public class BattleScene : MonoBehaviour
     private void UpdateUI()
     {
         hpBar!.fillAmount = (float)player!.Hp / player.MaxHp;
-        hpText!.text = player.Hp + " / " + player.MaxHp;
+        hpText!.text = player.Hp + "/" + player.MaxHp;
         var loadedWeapon = player.WeaponsHolder!.GetLoadedWeapon();
         if (loadedWeapon == null)
         {

@@ -15,7 +15,7 @@ public class Shotgun : IWeapon
         Strongest
     }
     private TargetAttribtue nextTargetAttribute = TargetAttribtue.Nearest;
-    private string[] targetAttributeTexts = { "近", "弱", "強" };
+    private string[] targetAttributeTexts = { "近距離", "最弱", "最強" };
     public List<GameObject> Targets { get; private set; }
     private float lockOnRange;
     private float searchCooldown;
